@@ -1,0 +1,54 @@
+[Buildset]
+BuildItems=@Variant(\x00\x00\x00\t\x00\x00\x00\x00\x03\x00\x00\x00\x0b\x00\x00\x00\x00\x02\x00\x00\x00\x14\x00W\x00o\x00r\x00d\x00F\x00i\x00n\x00d\x00e\x00r\x00\x00\x00\x14\x00w\x00o\x00r\x00d\x00f\x00i\x00n\x00d\x00e\x00r\x00\x00\x00\x0b\x00\x00\x00\x00\x02\x00\x00\x00\x14\x00W\x00o\x00r\x00d\x00F\x00i\x00n\x00d\x00e\x00r\x00\x00\x00\x18\x00b\x00o\x00g\x00g\x00l\x00e\x00S\x00o\x00l\x00v\x00e\x00r\x00\x00\x00\x0b\x00\x00\x00\x00\x02\x00\x00\x00\x14\x00W\x00o\x00r\x00d\x00F\x00i\x00n\x00d\x00e\x00r\x00\x00\x00\x14\x00c\x00o\x00m\x00b\x00i\x00n\x00a\x00t\x00o\x00r)
+
+[CMake]
+BuildDirs[$e]=/media/Data/projects/WordFinder/build
+CMakeDir=/usr/share/cmake-2.8/Modules
+Current CMake Binary=file:///usr/bin/cmake
+CurrentBuildDir=file:///media/Data/projects/WordFinder/build
+CurrentBuildType=Debug
+CurrentInstallDir=
+Extra Arguments=
+ProjectRootRelative=./
+
+[Launch]
+Launch Configurations=Launch Configuration 0,Launch Configuration 1
+
+[Launch][Launch Configuration 0]
+Configured Launch Modes=execute
+Configured Launchers=nativeAppLauncher
+Name=Nouvelle configuration Application native
+Type=Native Application
+
+[Launch][Launch Configuration 0][Data]
+Arguments=
+Dependencies=@Variant(\x00\x00\x00\t\x00\x00\x00\x00\x00)
+Dependency Action=Nothing
+EnvironmentGroup=default
+Executable=
+External Terminal=konsole --noclose --workdir %workdir -e %exe
+Project Target=WordFinder,boggleSolver
+Use External Terminal=false
+Working Directory=
+isExecutable=false
+
+[Launch][Launch Configuration 1]
+Configured Launch Modes=execute
+Configured Launchers=nativeAppLauncher
+Name=Nouvelle configuration Application native
+Type=Native Application
+
+[Launch][Launch Configuration 1][Data]
+Arguments=
+Dependencies=@Variant(\x00\x00\x00\t\x00\x00\x00\x00\x00)
+Dependency Action=Nothing
+EnvironmentGroup=default
+Executable=
+External Terminal=konsole --noclose --workdir %workdir -e %exe
+Project Target=WordFinder,combinator
+Use External Terminal=false
+Working Directory=
+isExecutable=false
+
+[MakeBuilder]
+Number Of Jobs=1
