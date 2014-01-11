@@ -1,8 +1,0 @@
-#ifndef BOGGLE_H
-#define BOGGLE_H
-
-class Boggle
-{
-};
-
-#endif // BOGGLE_H
