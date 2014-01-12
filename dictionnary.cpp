@@ -32,11 +32,19 @@ bool Dictionnary::isValid(const std::string& word) const
 {
 
     return dictionnary.find(word)!=dictionnary.end();
-
-   
-  
   
 }
+
+
+std::set<std::string>::const_iterator  Dictionnary::getLowerBound(const std::string& word) const
+{
+  return dictionnary.lower_bound(word);
+}
+
+
+
+
+
 
 void Dictionnary::addWord(std::string word)
 {

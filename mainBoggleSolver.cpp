@@ -63,7 +63,7 @@ int main(int argc, char **argv) {
    BoggleSolver b = BoggleSolver();
    b.setGrid(grid);
     b.setDictionnary(d);
-   std::vector<std::string> res = b.giveMeWords();
+  std::vector<std::string> res = b.giveMeWords();
   
    std::cout << "-------------------------------------------------------------------------------" << std::endl; 
    std::cout << "Avec le dictionnaire sélectionné, et la grille suivante " << std::endl;

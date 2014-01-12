@@ -66,10 +66,17 @@ std::set< std::string > BoggleSolver::giveMeWords(std::string base, Coordinates 
   
   base+=getLetter(start.getX(),start.getY());
   alreadyUsed.insert(start);
-  if(base.size()>=MIN_WORD_LENGTH &&  dictionnary.isValid(base))
+  if(base.size()>=MIN_WORD_LENGTH )
   {
+    std::set<std::string>::const_iterator lowerBound = dictionnary.getLowerBound(base);
     
+   if(base.compare(*lowerBound)==0)
     result.insert(base);
+    
+   //Optimisation : si on ne trouve pas base dans le début de upper bound, on peut arreter
+    if((*++lowerBound).compare(0,base.size(),base)!=0)
+      return result;
+
     
   }
   std::vector<Coordinates> adj = start.getAdjacent(gridSize-1,gridSize-1);
