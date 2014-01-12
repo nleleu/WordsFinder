@@ -5,6 +5,7 @@
 #include <string>
 #include <fstream>
 #include <iostream>
+#include <algorithm> 
 
 
 class Dictionnary
@@ -18,10 +19,11 @@ public:
   void addWord(std::string);
   bool isValid(const std::string&) const;
   std::set<std::string>::const_iterator getLowerBound(const std::string&) const;
-
+  std::set<std::string>::const_iterator getUpperBound(const std::string&) const;
 
 private:
   std::set<std::string> dictionnary;
+  std::string toUpper(const std::string& )const;
 
 };
   

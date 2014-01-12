@@ -42,12 +42,13 @@ std::vector<std::string> Combinator::giveMeWords()
 std::vector<std::string> Combinator::giveMeWords(std::string begin,std::vector<char> ls)
 {
   std::vector<std::string> result;
-  std::vector<std::string> otherResult;
+  
   
   std::vector<char> otherLetters = ls;
   int pos = 0;
   for(std::vector<char>::iterator it = ls.begin(); it != ls.end();++it)
   {
+    std::vector<std::string> otherResult;
     std::string source = begin;
     std::vector<char> otherLetters = ls;
     source += *it;
@@ -55,14 +56,27 @@ std::vector<std::string> Combinator::giveMeWords(std::string begin,std::vector<c
     if(alreadyTested.find(source)==alreadyTested.end())
     {
       alreadyTested.insert(source);
-      if(dictionnary.isValid(source))
-	if(anagramMode && source.size() == letterSet.size())
+      
+      //Attention, upper != lower+1
+      std::set<std::string>::const_iterator lowerBound = dictionnary.getLowerBound(source);
+      std::set<std::string>::const_iterator upperBound = dictionnary.getUpperBound(source);
+      if(!anagramMode || (anagramMode && source.size() == letterSet.size()))
+      {
+	 if(source.compare(*lowerBound)==0)
 	  result.push_back(source);
-	else if(!anagramMode)
-	  result.push_back(source);
+	  
+      }
+      //Optimisation : si on ne trouve pas source dans le début de upper bound, on peut arreter
+	 if((*upperBound).compare(0,source.size(),source)==0)
+	    otherResult = giveMeWords(source,otherLetters);
+
+	
+	
+	 
+	
+	result.insert( result.end(), otherResult.begin(), otherResult.end() );
     }
-    otherResult = giveMeWords(source,otherLetters);
-    result.insert( result.end(), otherResult.begin(), otherResult.end() );
+   
      pos ++ ;
     
   }

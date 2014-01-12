@@ -17,9 +17,9 @@ void Dictionnary::generate(const std::string& dicoFile)
 	  {
 	    std::string word;
 	    file >> word;
-	    if(word.size()>0)
+	    if(!word.empty())
 	    {
-	      addWord(word);
+	      addWord(toUpper(word));
 	    }
 	  }
 	  file.close(); 
@@ -31,18 +31,32 @@ void Dictionnary::generate(const std::string& dicoFile)
 bool Dictionnary::isValid(const std::string& word) const
 {
 
-    return dictionnary.find(word)!=dictionnary.end();
+    return dictionnary.find(toUpper(word))!=dictionnary.end();
   
 }
 
 
 std::set<std::string>::const_iterator  Dictionnary::getLowerBound(const std::string& word) const
 {
-  return dictionnary.lower_bound(word);
+  
+  return dictionnary.lower_bound(toUpper(word));
+}
+
+std::set< std::string >::const_iterator Dictionnary::getUpperBound(const std::string& word) const
+{
+  return dictionnary.upper_bound(toUpper(word));
 }
 
 
 
+
+std::string Dictionnary::toUpper(const std::string& word) const
+{
+  std::string tmp;
+  tmp.resize(word.size());
+  std::transform(word.begin(), word.end(), tmp.begin(), ::toupper);
+  return tmp;
+}
 
 
 
