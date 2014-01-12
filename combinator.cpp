@@ -58,16 +58,15 @@ std::vector<std::string> Combinator::giveMeWords(std::string begin,std::vector<c
       alreadyTested.insert(source);
       
       //Attention, upper != lower+1
-      std::set<std::string>::const_iterator lowerBound = dictionnary.getLowerBound(source);
-      std::set<std::string>::const_iterator upperBound = dictionnary.getUpperBound(source);
+      std::string upperBound = dictionnary.getUpperBound(source);
       if(!anagramMode || (anagramMode && source.size() == letterSet.size()))
       {
-	 if(source.compare(*lowerBound)==0)
+	 if(dictionnary.isValid(source))
 	  result.push_back(source);
 	  
       }
       //Optimisation : si on ne trouve pas source dans le début de upper bound, on peut arreter
-	 if((*upperBound).compare(0,source.size(),source)==0)
+	 if(upperBound.compare(0,source.size(),source)==0)
 	    otherResult = giveMeWords(source,otherLetters);
 
 	

@@ -46,12 +46,14 @@ std::vector< std::string > BoggleSolver::giveMeWords() const
       Coordinates c = Coordinates(x,y);
       std::set< Coordinates > alreadyUsed;
       alreadyUsed.clear();
+      
       otherResult =  giveMeWords("",c,alreadyUsed);
       result.insert( otherResult.begin(), otherResult.end() );
       x++;
     }
     y++;
   }
+  
    res.insert( res.end(), result.begin(), result.end() );
 
   std::sort(res.begin(), res.end(),f);
@@ -63,27 +65,27 @@ std::set< std::string > BoggleSolver::giveMeWords(std::string base, Coordinates 
 {
   std::set< std::string > result;
   std::set< std::string > otherResult;
-  
   base+=getLetter(start.getX(),start.getY());
   alreadyUsed.insert(start);
   if(base.size()>=MIN_WORD_LENGTH )
   {
     //Attention, upper != lower+1
-    std::set<std::string>::const_iterator lowerBound = dictionnary.getLowerBound(base);
-    std::set<std::string>::const_iterator upperBound = dictionnary.getUpperBound(base);
-    
-   if(base.compare(*lowerBound)==0)
+    std::string upperBound = dictionnary.getUpperBound(base);
+
+   if(dictionnary.isValid(base))
     result.insert(base);
     
    //Optimisation : si on ne trouve pas base dans le début de upper bound, on peut arreter
-    if((*upperBound).compare(0,base.size(),base)!=0)
+    if(upperBound.compare(0,base.size(),base)!=0)
       return result;
 
     
   }
+  
   std::vector<Coordinates> adj = start.getAdjacent(gridSize-1,gridSize-1);
   for(std::vector<Coordinates >::const_iterator it = adj.begin(); it != adj.end();++it)
   {
+    
       if(alreadyUsed.find(*it)==alreadyUsed.end())
       {
 	otherResult = giveMeWords(base,*it,alreadyUsed);

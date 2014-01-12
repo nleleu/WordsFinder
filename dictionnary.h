@@ -18,8 +18,7 @@ public:
   void generate(const std::string&);
   void addWord(std::string);
   bool isValid(const std::string&) const;
-  std::set<std::string>::const_iterator getLowerBound(const std::string&) const;
-  std::set<std::string>::const_iterator getUpperBound(const std::string&) const;
+  std::string getUpperBound(const std::string&) const;
 
 private:
   std::set<std::string> dictionnary;

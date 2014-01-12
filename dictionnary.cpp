@@ -36,15 +36,16 @@ bool Dictionnary::isValid(const std::string& word) const
 }
 
 
-std::set<std::string>::const_iterator  Dictionnary::getLowerBound(const std::string& word) const
-{
-  
-  return dictionnary.lower_bound(toUpper(word));
-}
 
-std::set< std::string >::const_iterator Dictionnary::getUpperBound(const std::string& word) const
+
+std::string Dictionnary::getUpperBound(const std::string& word) const
 {
-  return dictionnary.upper_bound(toUpper(word));
+  std::string res;
+  std::set<std::string>::const_iterator upper = dictionnary.upper_bound(toUpper(word));
+  if(upper!=dictionnary.end())
+    res = *upper;
+  return res;
+  
 }
 
 
@@ -57,6 +58,7 @@ std::string Dictionnary::toUpper(const std::string& word) const
   std::transform(word.begin(), word.end(), tmp.begin(), ::toupper);
   return tmp;
 }
+
 
 
 
